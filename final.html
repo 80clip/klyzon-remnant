@@ -1,1 +1,81 @@
-<!DOCTYPE html><html lang="ja"><head><meta charset="UTF-8"><title>Stage 4 - 最終信号</title><style>body{background:#1c1c1c;color:#cfcfcf;font-family:'Noto Sans JP',sans-serif;text-align:center;padding:60px}.klyzon{font-size:2em;letter-spacing:0.3em;margin:30px auto;width:80%;opacity:0;transition:opacity 3s ease-in}.reveal{opacity:1!important}textarea{width:80%;height:120px;background:#2c2c2c;color:#cfcfcf;font-size:1em;padding:10px;margin-top:30px;border:none}button{margin-top:20px;padding:10px 30px;font-size:1em;cursor:pointer}</style></head><body><h1>Stage 4 - 最終信号</h1><p>すべての記号を理解した今、最後のKlyzon語を解読せよ。</p><div id="message" class="klyzon">⋄ ⟡⌁ ∿ ⍒⌮ ⨍ ⊚<br>⨀⊜ ⎎⏃ ⊜∿ ⊚ ⟡⌁<br>⩫⋄ ⏃ ⌇ ⨍ ⍒⌮ ⍙</div><button onclick="document.getElementById('message').classList.add('reveal')">記号を表示する</button><textarea placeholder="ここに翻訳文を入力してください（例：人は…）"></textarea><audio controls src="klyzon_final_signal.wav"></audio></body></html>
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Final Stage - KLYZON REMNANT</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background-color: #0f0f0f;
+      color: #e0e0e0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+      transition: background-color 1s;
+    }
+    h1 {
+      font-size: 2em;
+      color: #81c784;
+    }
+    textarea {
+      width: 80%;
+      max-width: 500px;
+      height: 100px;
+      margin-top: 20px;
+      font-size: 1em;
+      padding: 10px;
+      background-color: #222;
+      color: #e0e0e0;
+      border: none;
+      border-radius: 8px;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 1em;
+      border: none;
+      background-color: #81c784;
+      color: #111;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    #response {
+      margin-top: 30px;
+      font-size: 1.2em;
+    }
+  </style>
+</head>
+<body>
+  <h1>Final Transmission</h1>
+  <p>Enter your decrypted message below:</p>
+  <textarea id="inputArea" placeholder="例：The gate has opened"></textarea>
+  <button onclick="verifyInput()">Transmit</button>
+  <div id="response"></div>
+
+  <audio id="successSound">
+    <source src="transmission_success.wav" type="audio/wav">
+  </audio>
+
+  <script>
+    function verifyInput() {
+      const input = document.getElementById("inputArea").value.trim().toLowerCase();
+      const response = document.getElementById("response");
+      const audio = document.getElementById("successSound");
+
+      if (input.includes("the gate has opened") || input.includes("orahra kai")) {
+        document.body.style.backgroundColor = "#81c784";
+        response.innerHTML = "<strong>TRANSMISSION ACCEPTED</strong><br>The signal is received.";
+        audio.play();
+      } else {
+        response.innerHTML = "<span style='color:#ff9800;'>Unrecognized transmission. Try again.</span>";
+      }
+    }
+  </script>
+</body>
+</html>
